@@ -17,4 +17,8 @@ set(SOURCES
         imstb_truetype.h
         imgui_demo.cpp)
 
+set(INCLUDES
+        imgui.h)
+
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
+target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDES})
