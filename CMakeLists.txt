@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.14)
+cmake_minimum_required(VERSION 3.23)
 
 set(CMAKE_CXX_EXTENSIONS 17)
 set(CMAKE_CXX_COMPILER_VERSION 17)
 
-project(imgui)
+project(ImGui)
 
 set(SOURCES
         imconfig.h
@@ -17,8 +17,12 @@ set(SOURCES
         imstb_truetype.h
         imgui_demo.cpp)
 
-set(INCLUDES
-        imgui.h)
 
-add_library(${PROJECT_NAME} STATIC ${SOURCES})
-target_include_directories(${PROJECT_NAME} PUBLIC ${INCLUDES})
+add_library(${PROJECT_NAME} STATIC)
+
+target_sources(${PROJECT_NAME}
+        PRIVATE
+            ${SOURCES}
+        PUBLIC FILE_SET HEADERS
+            FILES ${PROJECT_SOURCE_DIR}/imgui.h
+        )
